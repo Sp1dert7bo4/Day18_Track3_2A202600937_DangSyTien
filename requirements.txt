@@ -1,3 +1,8 @@
+# Ghi chú cho môi trường cài đặt (Đã kiểm nghiệm với Python 3.14):
+# ⚠️ Gói numpy cũ (như 1.26.4) không có binary wheels cho Python 3.14 trên Windows và cần C Compiler để biên dịch.
+# Để xử lý, chúng tôi đã cài trước numpy>=2.0.0 (phiên bản hiện tại là 2.4.6 có sẵn wheels).
+# Ngoài ra, cài đặt gói `ragas` bằng lệnh `pip install "ragas>=0.1.10,<0.2" --no-deps` để tránh xung đột hạ cấp numpy.
+
 pypdf>=4.0
 python-dotenv>=1.0
 underthesea>=6.8
@@ -10,3 +15,4 @@ langchain-community>=0.2,<0.3
 langchain-openai>=0.1,<0.2
 datasets>=2.19
 openai>=1.30
+

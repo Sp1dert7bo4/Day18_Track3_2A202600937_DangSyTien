@@ -15,8 +15,21 @@ COLLECTION_NAME = "lab18_production"
 NAIVE_COLLECTION = "lab18_naive"
 
 # --- Embedding ---
-EMBEDDING_MODEL = "BAAI/bge-m3"
+_LOCAL_EMBEDDING_MODEL = os.path.abspath(os.path.join(os.path.dirname(__file__), "models", "bge-m3"))
+_EMBEDDING_WEIGHTS = os.path.join(_LOCAL_EMBEDDING_MODEL, "pytorch_model.bin")
+if os.path.exists(_EMBEDDING_WEIGHTS):
+    EMBEDDING_MODEL = _LOCAL_EMBEDDING_MODEL
+else:
+    EMBEDDING_MODEL = "BAAI/bge-m3"
 EMBEDDING_DIM = 1024
+
+# --- Reranking ---
+_LOCAL_RERANKER_MODEL = os.path.abspath(os.path.join(os.path.dirname(__file__), "models", "bge-reranker-v2-m3"))
+_RERANKER_WEIGHTS = os.path.join(_LOCAL_RERANKER_MODEL, "model.safetensors")
+if os.path.exists(_RERANKER_WEIGHTS):
+    RERANKER_MODEL = _LOCAL_RERANKER_MODEL
+else:
+    RERANKER_MODEL = "BAAI/bge-reranker-v2-m3"
 
 # --- Chunking ---
 HIERARCHICAL_PARENT_SIZE = 2048
